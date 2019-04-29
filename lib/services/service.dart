@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:desafio_new_flutterando/models/news.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+//import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 
 class NewsApi {
@@ -13,12 +13,12 @@ class NewsApi {
     
     try {
 
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      response = await dio.get('https://newsapi.org/v2/everything?q=bitcoin&from=2019-03-21&apiKey=59f195f3284d4a42bf165aae5b61558e');
+      //SharedPreferences prefs = await SharedPreferences.getInstance();
+      response = await dio.get('https://newsapi.org/v2/everything?q=bitcoin&apiKey=1eef037d8fa34a489f32c2ba651855d7');
       parsedResponse = NewsModel.fromJson(response.data);
-      await prefs.setString('dnf_articles', jsonEncode(response.data));
+      //await prefs.setString('dnf_articles', jsonEncode(response.data));
 
-    } on DioError catch (e) {
+    } /* on DioError catch (e) {
       print(e);
       SharedPreferences prefs = await SharedPreferences.getInstance();
       if ( prefs.containsKey('dnf_articles')){
@@ -27,7 +27,7 @@ class NewsApi {
         throw Exception("SEM REDE E SEM DADOS EM CACHE");
       }
 
-    } catch (e) {
+    }  */catch (e) {
       print(e);
     }
 
